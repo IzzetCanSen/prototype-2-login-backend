@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\prototype-2-login-backend.props" />
+</Project>
