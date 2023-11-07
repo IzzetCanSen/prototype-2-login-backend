@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "+537VkpPMTl5akPx3XCh8+liF/OkP3n6U63QNwefPRZKT9UXFzDpK1eliUWjFRGAidXJOAAkIPb5HqPv/SCtow==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ceka-\\Desktop\\Expertlab\\Prototype-2\\prototype-2-login-backend\\prototype-2-login-backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ceka-\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\ceka-\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\ceka-\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\ceka-\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\ceka-\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\ceka-\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
