@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\prototype-2-login-backend.props" />
-</Project>
