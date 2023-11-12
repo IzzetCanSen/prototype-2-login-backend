@@ -38,6 +38,8 @@ namespace prototype_2_login_backend.Controllers
             if(userObj == null)
                 return BadRequest();
 
+            userObj.Role = "User";
+            userObj.Token = "";
             await _authContext.Users.AddAsync(userObj);
             await _authContext.SaveChangesAsync();
             return Ok(new { Message = "User signed up!" });
