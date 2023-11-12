@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using prototype_2_login_backend.Context;
+using prototype_2_login_backend.Helpers;
 using prototype_2_login_backend.Models;
 
 namespace prototype_2_login_backend.Controllers
@@ -23,9 +24,14 @@ namespace prototype_2_login_backend.Controllers
                 return BadRequest();
 
             var user = await _authContext.Users
-                .FirstOrDefaultAsync(x => x.Email == userObj.Email && x.Password == userObj.Password);
+                .FirstOrDefaultAsync(x => x.Email == userObj.Email);
             if (user == null)
                 return NotFound(new { Message = "User not found." });
+
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
+            {
+                return BadRequest(new { Message = "Password is Incorrect" });
+            }
 
             return Ok(new {
                 Message = "Login sucess!"
@@ -37,6 +43,8 @@ namespace prototype_2_login_backend.Controllers
         {
             if(userObj == null)
                 return BadRequest();
+
+            userObj.Password = PasswordHasher.HashPassword(userObj.Password);
 
             userObj.Role = "User";
             userObj.Token = "";
