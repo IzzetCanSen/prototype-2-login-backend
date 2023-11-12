@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using prototype_2_login_backend.Context;
 using prototype_2_login_backend.Helpers;
 using prototype_2_login_backend.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace prototype_2_login_backend.Controllers
 {
@@ -33,7 +37,10 @@ namespace prototype_2_login_backend.Controllers
                 return BadRequest(new { Message = "Password is Incorrect" });
             }
 
+            user.Token = CreateJwt(user);
+
             return Ok(new {
+                Token = user.Token,
                 Message = "Login sucess!"
             });
         }
@@ -51,6 +58,28 @@ namespace prototype_2_login_backend.Controllers
             await _authContext.Users.AddAsync(userObj);
             await _authContext.SaveChangesAsync();
             return Ok(new { Message = "User signed up!" });
+        }
+
+        private string CreateJwt(User user)
+        {
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("verylongsecretkey");
+            var identity = new ClaimsIdentity(new Claim[]
+            {
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.Name,$"{user.Name}")
+            });
+
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = identity,
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = credentials
+            };
+            var token = jwtTokenHandler.CreateToken(tokenDescriptor);
+            return jwtTokenHandler.WriteToken(token);
         }
     }
 }
