@@ -60,6 +60,12 @@ namespace prototype_2_login_backend.Controllers
             return Ok(new { Message = "User signed up!" });
         }
 
+        [HttpGet]
+        public async Task<ActionResult<User>> GetAllUsers()
+        {
+            return Ok(await _authContext.Users.ToListAsync());
+        }
+
         private string CreateJwt(User user)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
